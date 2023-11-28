@@ -18,18 +18,15 @@ class DishSeeder extends Seeder
     {
         $restaurants = Restaurant::all();
         $dishes = config('store.dbdishes');
-        foreach ($restaurants as $restaurant){
-            foreach ($dishes as $dish) {
-                $newDish = new Dish();
-                $newDish->restaurant_id = $restaurant->id;
-                $newDish->name = $dish['name'];
-                $newDish->description = $dish['description'];
-                $newDish->ingredients = implode(', ', $dish['ingredients']);
-                $newDish->visible = $faker->numberBetween(0, 1);
-                $newDish->price = $dish['price'];
-
-                $newDish->save();
-            }
+        foreach ($dishes as $dish) {
+            $newDish = new Dish();
+            $newDish->restaurant_id = rand(1,(count($restaurants)));
+            $newDish->name = $dish['name'];
+            $newDish->description = $dish['description'];
+            $newDish->ingredients = implode(', ', $dish['ingredients']);
+            $newDish->visible = $faker->numberBetween(0, 1);
+            $newDish->price = $dish['price'];
+            $newDish->save();
         }
     }
 }
