@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Admin\Restaurant;
+use \App\Models\Admin\Restaurant;
+use \App\Models\Admin\Typology;
+use \App\Models\Admin\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
@@ -14,7 +16,11 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        // $restaurants = Restaurant::all();
+        // $current = $user->restaurants;
+        $restaurants = Restaurant::where('user_id', Auth::user()->id)->first();
+        return view('Admin.create',compact('restaurants'));
     }
 
     /**
