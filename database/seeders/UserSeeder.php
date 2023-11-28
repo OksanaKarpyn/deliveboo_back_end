@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+
 class UserSeeder extends Seeder
 {
     /**
@@ -16,7 +17,7 @@ class UserSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for($i =1; $i <= 20; $i++){
+        for ($i = 1; $i <= 20; $i++) {
             $newUser = new User();
             $newUser->name = $faker->unique()->firstName;
             $newUser->email = $faker->unique()->email;
