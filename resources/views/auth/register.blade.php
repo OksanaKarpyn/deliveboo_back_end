@@ -71,7 +71,7 @@
                             <label for="piva" class="col-md-4 col-form-label text-md-right">{{ __('P. IVA') }}</label>
 
                             <div class="col-md-6">
-                                <input id="piva" type="text" class="form-control @error('piva') is-invalid @enderror" name="piva" value="{{ old('piva') }}" required autocomplete="piva">
+                                <input id="piva" type="number" class="form-control @error('piva') is-invalid @enderror" name="piva" value="{{ old('piva') }}" required autocomplete="piva">
 
                                 @error('piva')
                                 <span class="invalid-feedback" role="alert">
@@ -80,6 +80,36 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="mb-4 row">
+                            <label for="tipology" class="col-md-4 col-form-label text-md-right">{{ __('Tipologia') }}</label>
+
+                            <div class="col-md-6">
+                                @foreach ($typologies as $typology)
+                                    
+                                <div class="form-check">
+                                    <input 
+                                        class="form-check-input @error('typologys') is-invalid @enderror" 
+                                        type="checkbox" 
+                                        name="typologys[]" 
+                                        value="{{$typology->id}}"
+                                        id="typology-checkbox-{{$typology->id}}"
+                                         {{-- onchange="checktypologys()" --}}
+                                    >
+                                    <label class="form-check-label" for="typology-checkbox-{{$typology->id}}">
+                                    {{$typology->name}}
+                                    </label>
+                                </div>
+                                @endforeach
+
+                                @error('tipology')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
 
                         <div class="mb-4 row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>

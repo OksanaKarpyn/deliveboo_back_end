@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Admin\Typology;
+use App\Models\Admin\Restaurant;
 
 class RegisteredUserController extends Controller
 {
@@ -20,7 +22,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $typologies = Typology::All();
+
+        return view('auth.register', compact('typologies'));
     }
 
     /**
@@ -43,13 +47,17 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'activity_name' => $request->activity_name,
-            'address' => $request->address,
-            'piva' => $request->piva,
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
+        $restaurant = Restaurant::create([
+            'user_id' => $user->id,
+            'name' => $request->name,
+            'address' => $request->address,
+            'piva' => $request->piva,
+        ]);
+
+        event(new Registered($user, $restaurant));
 
         Auth::login($user);
 

@@ -20,7 +20,7 @@ return new class extends Migration
 
             $table->string("name");
             $table->string("address");
-            $table->text("photo");
+            $table->text("photo")->nullable();
             $table->string("piva");
             $table->timestamps();
         });

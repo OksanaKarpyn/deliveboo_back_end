@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin\Dish;
+use App\Models\Admin\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DishController extends Controller
 {
@@ -14,7 +16,11 @@ class DishController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $userId = $user->id;
+        $resturant = Restaurant::where('user_id', $userId)->first();
+        $dishes = Dish::where('resturant_id', $resturant->id)->get();
+        return view('admin.dishes', compact('resturant', 'dishes')); 
     }
 
     /**
