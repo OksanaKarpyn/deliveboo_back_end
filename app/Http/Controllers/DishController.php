@@ -29,8 +29,9 @@ class DishController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        
+        return view('admin.dish_create');
     }
 
     /**
