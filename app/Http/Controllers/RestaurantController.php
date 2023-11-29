@@ -16,11 +16,12 @@ class RestaurantController extends Controller
      */
     public function index()
     {
+        $typologies = Typology::all();
         $user = Auth::user();
         // $restaurants = Restaurant::all();
         // $current = $user->restaurants;
         $restaurants = Restaurant::where('user_id', Auth::user()->id)->first();
-        return view('Admin.dashboard',compact('restaurants'));
+        return view('Admin.dashboard',compact('restaurants','typologies'));
     }
 
     /**
