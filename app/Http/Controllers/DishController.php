@@ -30,7 +30,9 @@ class DishController extends Controller
      */
     public function create()
     {   
-        
+        $dishes = Dish::All();
+        $restaurantes = Restaurant::All();
+
         return view('admin.dish_create');
     }
 
@@ -40,9 +42,29 @@ class DishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Restaurant $restaurant)
     {
-        //
+
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'ingredientes' => 'required',
+            'visible' => 'required',
+            'price' => 'required',
+        ]);
+    
+        $validatedData['visible'] = $request->input('visible');
+        
+        Dish::create([
+            'restaurant_id' => $restaurant->id,
+            'name' => $validatedData['name'],
+            'description' => $validatedData['description'],
+            'ingredientes' => $validatedData['ingredientes'],
+            'visible' => $validatedData['visible'],
+            'price' => $validatedData['price'],
+        ]);
+
+        return redirect()->route('dish.index', ['restaurant' => $restaurant->id]);
     }
 
     /**
