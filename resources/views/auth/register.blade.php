@@ -88,14 +88,7 @@
                                 @foreach ($typologies as $typology)
                                     
                                 <div class="form-check">
-                                    <input 
-                                        class="form-check-input @error('typologys') is-invalid @enderror" 
-                                        type="checkbox" 
-                                        name="typologys[]" 
-                                        value="{{$typology->id}}"
-                                        id="typology-checkbox-{{$typology->id}}"
-                                         {{-- onchange="checktypologys()" --}}
-                                    >
+                                    <input class="form-check-input @error('typology') is-invalid @enderror" type="checkbox" name="typologies[]" value="{{$typology->id}}" id="typology-checkbox-{{$typology->id}}">
                                     <label class="form-check-label" for="typology-checkbox-{{$typology->id}}">
                                     {{$typology->name}}
                                     </label>

@@ -57,6 +57,12 @@ class RegisteredUserController extends Controller
             'piva' => $request->piva,
         ]);
 
+        if ($request['typologies']){
+            $typologies = $request->input('typologies');
+            $restaurant->typologies()->attach($typologies);
+
+        }
+
         event(new Registered($user, $restaurant));
 
         Auth::login($user);
