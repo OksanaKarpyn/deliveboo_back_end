@@ -21,6 +21,9 @@ class UserSeeder extends Seeder
             $newUser = new User();
             $newUser->name = $faker->unique()->firstName;
             $newUser->email = $faker->unique()->email;
+            $newUser->activity_name = $faker->text;
+            $newUser->address = $faker->text;
+            $newUser->piva = $faker->text;
             $newUser->password = Hash::make('password');
             $newUser->save();
         }

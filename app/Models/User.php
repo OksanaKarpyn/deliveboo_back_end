@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'activity_name',
+        'address',
+        'piva',
     ];
 
     /**
@@ -46,5 +49,10 @@ class User extends Authenticatable
     public function restaurant()
     {
         return $this->hasOne(Restaurant::class);
+    }
+    
+    public function typologies()
+    {
+	    return $this->belongsToMany(Typology::class);
     }
 }
