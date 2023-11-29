@@ -5,5 +5,5 @@
     @endif
 
     <a href="">Aggiungi piatto</a> <br>
-    <a href="">Lista piatti</a>
+    <a href="/dishes">Lista piatti</a>
 @endsection

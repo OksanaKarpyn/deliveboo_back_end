@@ -18,9 +18,9 @@ class DishController extends Controller
     {
         $user = Auth::user();
         $userId = $user->id;
-        $resturant = Restaurant::where('user_id', $userId)->first();
-        $dishes = Dish::where('resturant_id', $resturant->id)->get();
-        return view('admin.dishes', compact('resturant', 'dishes')); 
+        $restaurant = Restaurant::where('user_id', $userId)->first();
+        $dishes = Dish::where('restaurant_id', $restaurant->id)->get();
+        return view('admin.dish_index', compact('restaurant', 'dishes')); 
     }
 
     /**

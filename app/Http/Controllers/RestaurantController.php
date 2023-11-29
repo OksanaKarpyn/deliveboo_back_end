@@ -20,7 +20,7 @@ class RestaurantController extends Controller
         // $restaurants = Restaurant::all();
         // $current = $user->restaurants;
         $restaurants = Restaurant::where('user_id', Auth::user()->id)->first();
-        return view('Admin.create',compact('restaurants'));
+        return view('Admin.dashboard',compact('restaurants'));
     }
 
     /**
