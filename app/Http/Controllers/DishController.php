@@ -20,7 +20,7 @@ class DishController extends Controller
         $userId = $user->id;
         $restaurant = Restaurant::where('user_id', $userId)->first();
         $dishes = Dish::where('restaurant_id', $restaurant->id)->get();
-        return view('admin.dish_index', compact('restaurant', 'dishes')); 
+        return view('admin.dish.index', compact('restaurant', 'dishes')); 
     }
 
     /**
@@ -31,7 +31,7 @@ class DishController extends Controller
     public function create()
     {   
         
-        return view('admin.dish_create');
+        return view('admin.dish.create');
     }
 
     /**

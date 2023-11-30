@@ -2,7 +2,8 @@
 @section('content')
    <h1>test</h1>
    
-   <form action="{{route("dishes.store")}}" mothod="POST">
+   <form action="{{route("dishes.store")}}" mothod="POST" enctype="mupltipart/form-data">
+    @csrf
     <div class="col-5 m-auto">
 
         <div class="mb-4 row">
@@ -35,6 +36,22 @@
                 </label>
               </div>
         </div>
+
+        <div class="form-group mb-3">
+            <label for="photo" class="form-label @error('photo') is-invalid @enderror">Foto</label>
+            @error('photo')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            <input type="file" name="photo" id="photo" class="form-control" accept=".png, .jpg, .jpeg, .gif">
+            <div class="invalid-feedback" id="photo-feedback"></div>
+        </div>
+
+        <div class="mb-4 row">
+          <div>
+
+            <button type="submit">Salva Piatto</button>
+          </div>
+      </div>
     </div>
 
     
