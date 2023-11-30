@@ -6,6 +6,7 @@ use App\Models\Admin\Dish;
 use App\Models\Admin\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreDishRequest;
 
 class DishController extends Controller
 {
@@ -20,7 +21,7 @@ class DishController extends Controller
         $userId = $user->id;
         $restaurant = Restaurant::where('user_id', $userId)->first();
         $dishes = Dish::where('restaurant_id', $restaurant->id)->get();
-        return view('admin.dish_index', compact('restaurant', 'dishes')); 
+        return view('admin.dish.index', compact('restaurant', 'dishes')); 
     }
 
     /**
@@ -30,10 +31,15 @@ class DishController extends Controller
      */
     public function create()
     {   
+<<<<<<< HEAD
         $dishes = Dish::All();
         $restaurantes = Restaurant::All();
 
         return view('admin.dish_create');
+=======
+        
+        return view('admin.dish.create');
+>>>>>>> ae6a4c81ef86ea2e2495cddbbdedb7744e122d91
     }
 
     /**
@@ -42,6 +48,7 @@ class DishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function store(Request $request, Restaurant $restaurant)
     {
 
@@ -65,6 +72,22 @@ class DishController extends Controller
         ]);
 
         return redirect()->route('dish.index', ['restaurant' => $restaurant->id]);
+=======
+    public function store(StoreDishRequest $request)
+    {
+        $validated_data = $request->validated();
+
+        $new_dish = new Dish();
+
+        $validated_data['restaurant_id'] = Auth::user()->id;
+
+        $validated_data['visible'] = $request->input('visible', 0);
+        
+        $new_dish->fill($validated_data);
+        $new_dish->save();
+
+        return redirect()->route('dishes.index');
+>>>>>>> ae6a4c81ef86ea2e2495cddbbdedb7744e122d91
     }
 
     /**
@@ -84,9 +107,10 @@ class DishController extends Controller
      * @param  \App\Models\Admin\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dish $dish)
+    public function edit($id)
     {
-        //
+        $dish = Dish::find($id);
+        return view('admin.dish.edit', compact('dish'));
     }
 
     /**
@@ -96,9 +120,18 @@ class DishController extends Controller
      * @param  \App\Models\Admin\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dish $dish)
+    public function update(StoreDishRequest $request, $id)
     {
-        //
+        $validated_data = $request->validated();
+
+        // $validated_data['restaurant_id'] = Auth::user()->id;
+
+        // $validated_data['visible'] = $request->input('visible', 0);
+        
+        // $new_dish->fill($validated_data);
+        // $new_dish->save();
+
+        return redirect()->route('dishes.index');
     }
 
     /**
@@ -107,8 +140,10 @@ class DishController extends Controller
      * @param  \App\Models\Admin\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dish $dish)
+    public function destroy( $id)
     {
-        //
+        $dish = Dish::find($id);
+        $dish->delete();
+        return redirect()->route('dishes.index');
     }
 }

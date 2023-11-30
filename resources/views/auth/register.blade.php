@@ -8,9 +8,8 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype = "multipart/form-data">
                         @csrf
-
                         <div class="mb-4 row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -82,20 +81,27 @@
                         </div>
 
                         <div class="mb-4 row">
+                            <label for="img" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="img" type="file" class="form-control @error('img') is-invalid @enderror" name="photo" value="{{ old('img') }}" required autocomplete="img">
+
+                                @error('img')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="mb-4 row">
                             <label for="tipology" class="col-md-4 col-form-label text-md-right">{{ __('Tipologia') }}</label>
 
                             <div class="col-md-6">
                                 @foreach ($typologies as $typology)
                                     
                                 <div class="form-check">
-                                    <input 
-                                        class="form-check-input @error('typologys') is-invalid @enderror" 
-                                        type="checkbox" 
-                                        name="typologys[]" 
-                                        value="{{$typology->id}}"
-                                        id="typology-checkbox-{{$typology->id}}"
-                                         {{-- onchange="checktypologys()" --}}
-                                    >
+                                    <input class="form-check-input @error('typology') is-invalid @enderror" type="checkbox" name="typologies[]" value="{{$typology->id}}" id="typology-checkbox-{{$typology->id}}">
                                     <label class="form-check-label" for="typology-checkbox-{{$typology->id}}">
                                     {{$typology->name}}
                                     </label>
