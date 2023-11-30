@@ -2,7 +2,7 @@
 @section('content')
    <h1>test</h1>
    
-   <form action="{{route("dishes.store")}}" method="POST" enctype="mupltipart/form-data">
+   <form action="{{route("dishes.store")}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="col-5 m-auto">
 
