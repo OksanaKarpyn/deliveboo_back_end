@@ -2,7 +2,7 @@
 @section('content')
    <h1>test</h1>
    
-   <form action="{{route("dishes.store")}}" mothod="POST" enctype="mupltipart/form-data">
+   <form action="{{route("dishes.store")}}" method="POST" enctype="mupltipart/form-data">
     @csrf
     <div class="col-5 m-auto">
 
@@ -12,9 +12,14 @@
         </div>
     
         <div class="mb-4 row">
-            <label for="ingredients">Ingredienti</label>
-            <input type="text" name="ingredients" id="ingredients">
+            <label for="description">Descrizione</label>
+            <input type="text" name="description" id="description">
         </div>
+
+        <div class="mb-4 row">
+          <label for="ingredients">Ingredienti</label>
+          <input type="text" name="ingredients" id="ingredients">
+      </div>
     
         <div class="mb-4 row">
             <label for="price">Prezzo</label>
@@ -22,16 +27,16 @@
         </div>
     
         <div class="mb-4 row">
-            <label for="visiblility">Visibilità</label>
+            <label for="visible">Visibilità</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
+                <input class="form-check-input" type="radio" name="visible" id="visible1">
+                <label class="form-check-label" for="visible1">
                   Visibile
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                <label class="form-check-label" for="flexRadioDefault2">
+                <input class="form-check-input" type="radio" name="visible" id="visible2" checked>
+                <label class="form-check-label" for="visible2">
                   Invisibile
                 </label>
               </div>

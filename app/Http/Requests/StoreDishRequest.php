@@ -25,10 +25,11 @@ class StoreDishRequest extends FormRequest
     {
         return [
             'name' => ['string', 'max:255', 'required'],
-            'ingredients' => ['text', 'required'],
+            'description' => ['string', 'required'],
+            'ingredients' => ['string', 'required'],
             'price' => ['string', 'max:10', 'required'],
-            'visiblility' =>['boolean', 'required'],
-            'photo' =>['string', 'required']
+            'visible' =>['boolean', 'required'],
+            'photo' =>['nullable']
         ];
     }
 }

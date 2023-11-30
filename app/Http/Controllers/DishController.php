@@ -6,6 +6,7 @@ use App\Models\Admin\Dish;
 use App\Models\Admin\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreDishRequest;
 
 class DishController extends Controller
 {
@@ -40,9 +41,17 @@ class DishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDishRequest $request)
     {
-        //
+        
+        $validated_data = $request->validated();
+        dd($validated_data);
+        $restaurant = Auth::user();
+
+     //   $newDish = Dish::create($validated_data);
+
+        
+       return redirect()->route('admin.dish.index');
     }
 
     /**
