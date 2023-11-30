@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text("ingredients");
             $table->tinyInteger("visible");
             $table->decimal("price",10,2);
-            
+            $table->text("photo")->nullable();
             $table->timestamps();
         });
     }

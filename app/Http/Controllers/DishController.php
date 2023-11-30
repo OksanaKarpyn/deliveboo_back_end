@@ -74,9 +74,10 @@ class DishController extends Controller
      * @param  \App\Models\Admin\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dish $dish)
+    public function edit($id)
     {
-        //
+        $dish = Dish::find($id);
+        return view('admin.dish.edit', compact('dish'));
     }
 
     /**
@@ -86,9 +87,18 @@ class DishController extends Controller
      * @param  \App\Models\Admin\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dish $dish)
+    public function update(StoreDishRequest $request, $id)
     {
-        //
+        $validated_data = $request->validated();
+
+        // $validated_data['restaurant_id'] = Auth::user()->id;
+
+        // $validated_data['visible'] = $request->input('visible', 0);
+        
+        // $new_dish->fill($validated_data);
+        // $new_dish->save();
+
+        return redirect()->route('dishes.index');
     }
 
     /**
@@ -97,8 +107,10 @@ class DishController extends Controller
      * @param  \App\Models\Admin\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dish $dish)
+    public function destroy( $id)
     {
-        //
+        $dish = Dish::find($id);
+        $dish->delete();
+        return redirect()->route('dishes.index');
     }
 }

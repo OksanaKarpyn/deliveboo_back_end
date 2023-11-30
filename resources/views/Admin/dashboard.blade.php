@@ -11,7 +11,7 @@
                </div>
                
             @endif
-           </div>
+        </div>
 
     </div>
     @if(isset($restaurants->name))
