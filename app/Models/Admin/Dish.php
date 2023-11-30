@@ -9,6 +9,15 @@ class Dish extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+        'name',
+        'description',
+        'ingredients',
+        'price',
+        'visible',
+        'photo',
+        
+    ];
 
     //many to one  */1  più piatti un ristorante
     public function restaurants()

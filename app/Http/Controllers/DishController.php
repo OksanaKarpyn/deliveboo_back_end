@@ -41,11 +41,26 @@ class DishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDishRequest $request)
+    public function store(Request $request, Dish $dish )
     {
         
-        $validated_data = $request->validated();
-        dd($validated_data);
+        $form_data = $request->all();
+        $new_dish = new Dish();
+        
+        $form_data['restaurant_id'] = Auth::user()->id;
+        $new_dish->id = $form_data['restaurant_id'];
+        
+        if ($new_dish['visible'] == 'checked') {
+            $new_dish['visible'] = 1;
+        } else {
+            $new_dish['visible'] = 0;
+        }
+        $new_dish->fill($form_data);
+
+
+        $new_dish->save();
+       // $validated_data = $request->validated();
+        // dd($validated_data);
         $restaurant = Auth::user();
 
      //   $newDish = Dish::create($validated_data);

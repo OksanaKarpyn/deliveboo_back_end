@@ -26,21 +26,21 @@
             <input type="text" name="price" id="price">
         </div>
     
-        <div class="mb-4 row">
+        {{-- <div class="mb-4 row">
             <label for="visible">Visibilità</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="visible" id="visible1">
+                <input class="form-check-input" type="radio"  name="visible" id="visible1">
                 <label class="form-check-label" for="visible1">
                   Visibile
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="visible" id="visible2" checked>
+                <input class="form-check-input" type="radio"  name="visible" id="visible2" checked>
                 <label class="form-check-label" for="visible2">
                   Invisibile
                 </label>
               </div>
-        </div>
+        </div> --}}
 
         <div class="form-group mb-3">
             <label for="photo" class="form-label @error('photo') is-invalid @enderror">Foto</label>
