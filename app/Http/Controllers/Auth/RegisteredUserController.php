@@ -61,7 +61,7 @@ class RegisteredUserController extends Controller
 
         $restaurant = Restaurant::create([
             'user_id' => $user->id,
-            'name' => $request->name,
+            'name' => $request->activity_name,
             'address' => $request->address,
             'piva' => $request->piva,
             'photo' => $path_img, 

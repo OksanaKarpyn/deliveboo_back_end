@@ -15,15 +15,14 @@
 
     </div>
     @if(isset($restaurants->name))
-        <div>{{ $restaurants->name }}</div>
-        
+
+        <div>{{ $restaurants->name }}</div>    
 
     @endif
-    @foreach($typologies as $typology)
-    <div>{{$typology->name}}</div>
+    @foreach($restaurants->typologies as $item)
+        <div>{{$item->name}}</div>
     @endforeach
 
     {{-- <img class="rounded-circle col-6"  src="{{ asset('storage/' . $restaurants->photo) }}" alt="foto"> --}}
-    <a href="/dishes/create">Aggiungi piatto</a> <br>
     <a href="/dishes">Lista piatti</a>
 @endsection

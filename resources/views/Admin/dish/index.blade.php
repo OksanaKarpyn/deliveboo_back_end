@@ -1,15 +1,17 @@
 @extends('layouts.app')
 @section('content')
-   <h1>test</h1>
+   <h1>i tuoi piatti</h1>
+   <a href="/dishes/create">Aggiungi piatto</a>
    @if(isset($dishes))
     @foreach ($dishes as $dish)
         <h2>{{$dish->name}}</h2>
         <h2>{{$dish->ingredients}}</h2>
-        <a href="{{ route('dishes.edit', $dish->id) }}" class="btn btn-primary btn-sm">Edit</a>
+        <p>{{$dish->price}}</p>
+        <a href="{{ route('dishes.edit', $dish->id) }}" class="btn btn-primary btn-sm">Modifica</a>
           <form action="{{ route('dishes.destroy', $dish->id) }}"     method="post">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            <button type="submit" class="btn btn-danger btn-sm">Elimina</button>
            </form>
 
 

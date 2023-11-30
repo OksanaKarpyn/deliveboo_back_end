@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-   <h1>test</h1>
+   <h1>Crea nuovo piatto</h1>
    
    <form action="{{route("dishes.store")}}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -23,7 +23,7 @@
     
         <div class="mb-4 row">
             <label for="price">Prezzo</label>
-            <input type="text" name="price" id="price">
+            <input type="number" step="0.01" name="price" id="price">
         </div>
     
         <div class="mb-4 row">

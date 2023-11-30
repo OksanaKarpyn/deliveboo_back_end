@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-   <h1>test</h1>
+   <h1>Modifica {{ $dish->name }}</h1>
    
    <form method="post" action="{{ route('dishes.update', $dish->id) }}" >
     @csrf
@@ -24,19 +24,19 @@
     
         <div class="mb-4 row">
             <label for="price">Prezzo</label>
-            <input type="text" name="price" id="price" value="{{ $dish->price }}" required>
+            <input type="number" step="0.01" name="price" id="price" value="{{ $dish->price }}" required>
         </div>
     
         <div class="mb-4 row">
           <label for="visible">Visibilità</label>
           <div class="form-check">
-              <input class="form-check-input" type="radio" name="visible" id="visible1" value="1" checked>
+              <input class="form-check-input" type="radio" name="visible" id="visible1" value="1" {{$dish->visible == '1' ? 'checked' : ''}}>
               <label class="form-check-label" for="visible1">
                   Visibile
               </label>
           </div>
           <div class="form-check">
-              <input class="form-check-input" type="radio" name="visible" id="visible2" value="0">
+              <input class="form-check-input" type="radio" name="visible" id="visible2" value="0" {{$dish->visible == '0' ? 'checked' : ''}}>
               <label class="form-check-label" for="visible2">
                   Invisibile
               </label>
@@ -48,7 +48,7 @@
             @error('photo')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <input type="file" name="photo" id="photo" class="form-control" accept=".png, .jpg, .jpeg, .gif" value="{{ $dish->photo }}" required>
+            <input type="file" name="photo" id="photo" class="form-control" accept=".png, .jpg, .jpeg, .gif" value="{{ $dish->photo }}">
             <div class="invalid-feedback" id="photo-feedback"></div>
         </div>
 

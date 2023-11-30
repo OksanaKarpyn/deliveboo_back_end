@@ -29,7 +29,7 @@ class StoreDishRequest extends FormRequest
             'ingredients' => ['string', 'required'],
             'price' => ['string', 'max:10', 'required'],
             'visible' =>['boolean', 'nullable'],
-            'photo' =>['nullable']
+            'photo' =>['image', 'max:2048', 'nullable']
         ];
     }
 }
