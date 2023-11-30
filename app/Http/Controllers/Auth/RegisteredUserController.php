@@ -14,6 +14,7 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Models\Admin\Typology;
 use App\Models\Admin\Restaurant;
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
@@ -50,11 +51,20 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $form_data = $request->all();
+        if($request->hasFile('photo')){
+            $path_img = Storage::disk('public')->put('folderPhoto', $request->photo);
+            $form_data['photo'] = $path_img;
+            // dd($path_img);
+            
+        }
+
         $restaurant = Restaurant::create([
             'user_id' => $user->id,
             'name' => $request->name,
             'address' => $request->address,
             'piva' => $request->piva,
+            'photo' => $path_img, 
         ]);
 
         if ($request['typologies']){
@@ -62,7 +72,7 @@ class RegisteredUserController extends Controller
             $restaurant->typologies()->attach($typologies);
 
         }
-
+      
         event(new Registered($user, $restaurant));
 
         Auth::login($user);
