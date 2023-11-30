@@ -49,8 +49,8 @@ class DishController extends Controller
 
         $validated_data['restaurant_id'] = Auth::user()->id;
 
-        $validated_data['visible'] = isset($validated_data['visible']) && $validated_data['visible'] == 'on';
-
+        $validated_data['visible'] = $request->input('visible', 0);
+        
         $new_dish->fill($validated_data);
         $new_dish->save();
 
