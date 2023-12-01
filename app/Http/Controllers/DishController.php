@@ -72,9 +72,10 @@ class DishController extends Controller
      * @param  \App\Models\Admin\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function show(Dish $dish)
+    public function show($id)
     {
-        //
+        $singleDish = Dish::findOrFail($id);
+        return view('admin.dish.show', compact('singleDish'));
     }
 
     /**

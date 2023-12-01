@@ -16,15 +16,16 @@
 
 
            <div class="p-3 col-sm-12 col-md-12 col-xl-12 col-xxl-3 bordo-r">
-            @if($dish->photo)
-                <img class="rounded-circle col-6"  src="{{ asset('storage/' . $dish->photo) }}" alt="foto">    
-            @else
-               <div class="img-link d-flex justify-content-center align-items-center">
-                   <img class="doctor-img rounded-circle" src="https://picsum.photos/200/300" alt="">    
-               </div>
-               
-            @endif
-        </div>
+                @if($dish->photo)
+                    <img class="rounded-circle col-6"  src="{{ asset('storage/' . $dish->photo) }}" alt="foto">    
+                @else
+                   <div class="img-link d-flex justify-content-center align-items-center">
+                       <img class="doctor-img rounded-circle" src="https://picsum.photos/200/300" alt="">    
+                   </div>
+
+                @endif
+           </div>
+        <a href="{{ route('dishes.show', $dish->id) }}" class="btn btn-info">show</a>
     @endforeach
     
     @endif
