@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Dish;
 
-class RestaurantController extends Controller
+class DishController extends Controller
 {
     public function index() {
 

@@ -30,5 +30,4 @@ class RestaurantController extends Controller
 
     }
 
-
 }

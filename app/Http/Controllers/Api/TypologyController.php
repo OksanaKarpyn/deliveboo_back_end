@@ -7,7 +7,7 @@ use App\Models\Admin\Restaurant;
 
 use App\Models\Admin\Typology;
 
-class RestaurantController extends Controller
+class TypologyController extends Controller
 {
     public function index() {
 

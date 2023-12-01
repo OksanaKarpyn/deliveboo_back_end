@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Restaurant;
 use App\Models\Admin\Order;
 
-class RestaurantController extends Controller
+class OrderController extends Controller
 {
     public function index() {
 
