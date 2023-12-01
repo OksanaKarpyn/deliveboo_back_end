@@ -23,7 +23,13 @@ use App\Http\Controllers\Api\TypologyController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// TUTTI I RISTORANTI
 Route::get("/apiRestaurant", [RestaurantController::class, "index"]);
+
+// RISTORANTE SINGOLO
+Route::get("/apiRestaurant/{id}", [RestaurantController::class, 'show']);
+
 Route::get("/apiDish", [DishController::class, "index"]);
 Route::get("/apiOrder", [OrderController::class, "index"]);
 Route::get("/apiTypolody", [TypologyController::class, "index"]);
