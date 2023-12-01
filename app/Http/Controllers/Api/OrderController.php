@@ -4,17 +4,18 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Restaurant;
+use App\Models\Admin\Order;
 
 class RestaurantController extends Controller
 {
     public function index() {
 
 
-        $restaurants = Restaurant::with('typologies','dishes')->get();
+        $orders = Order::all();
 
         $response = [
             "success" => true,
-            "results" => $restaurants
+            "results" => $orders
         ];
 
         return response()->json($response);
