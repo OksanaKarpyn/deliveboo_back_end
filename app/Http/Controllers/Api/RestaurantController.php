@@ -7,10 +7,9 @@ use App\Models\Admin\Restaurant;
 
 class RestaurantController extends Controller
 {
-    public function index() {
-
-
-        $restaurants = Restaurant::with('typologies','dishes')->get();
+    public function index()
+    {
+        $restaurants = Restaurant::with('user', 'typologies', 'dishes')->get();
 
         $response = [
             "success" => true,
@@ -18,7 +17,7 @@ class RestaurantController extends Controller
         ];
 
         return response()->json($response);
-
     }
+
 
 }
