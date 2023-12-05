@@ -27,8 +27,7 @@
                                 </td>
                                 <td>
                                     @foreach ($order->dishes as $dish)
-                                    <li>{{ $dish->name }} - Quantity: {{ $dish->pivot->quantity }}<span
-                                        class="fw-bold">x{{ $dish->pivot->qt_item }}</span></li>
+                                    <li>{{ $dish->name }} - Quantity: {{ $dish->pivot->quantity }}</li>
                                 @endforeach
                                 </td>
                                 {{-- <td>{{$order->create_at}}</td> --}}
