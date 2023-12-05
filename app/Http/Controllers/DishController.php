@@ -45,7 +45,7 @@ class DishController extends Controller
     public function store(StoreDishRequest $request)
     {
         $validated_data = $request->validated();
-
+        
         if($request->hasFile('photo')){
             $path_img = Storage::disk('public')->put('folderPhoto', $request->photo);
             $validated_data['photo'] = $path_img;
@@ -55,9 +55,8 @@ class DishController extends Controller
 
         $new_dish = new Dish();
         
-
-        $validated_data['restaurant_id'] = Auth::user()->id;
-
+        $validated_data['restaurant_id'] = Auth::user()->restaurant->id;
+    
         $validated_data['visible'] = $request->input('visible', 0);
         
         $new_dish->fill($validated_data);
