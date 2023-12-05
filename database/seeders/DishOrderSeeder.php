@@ -16,6 +16,16 @@ class DishOrderSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        
+        $piattiId = Dish::all()->pluck('id');
+        $ordini = Order::all();
+    
+        foreach ($ordini as $ordine) {
+            $piatti = [$faker->randomElement($piattiId), $faker->randomElement($piattiId)];
+            $ordine->dishes()->sync($piatti);
+            
+            // Assegna un valore a 'quantity' durante la creazione del record
+            $ordine->dishes()->updateExistingPivot($piatti[0], ['quantity' => $faker->numberBetween(0, 10)]);
+            $ordine->dishes()->updateExistingPivot($piatti[1], ['quantity' => $faker->numberBetween(0, 10)]);
+        }
     }
 }
