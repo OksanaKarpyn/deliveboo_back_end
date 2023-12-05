@@ -57,6 +57,8 @@ class RegisteredUserController extends Controller
             $form_data['photo'] = $path_img;
             // dd($path_img);
             
+        }else{
+            $form_data['photo'] = 'https://picsum.photos/200/200';
         }
 
         $restaurant = Restaurant::create([
@@ -64,7 +66,7 @@ class RegisteredUserController extends Controller
             'name' => $request->activity_name,
             'address' => $request->address,
             'piva' => $request->piva,
-            'photo' => $path_img, 
+            'photo' => $form_data['photo'], 
         ]);
 
         if ($request['typologies']){
