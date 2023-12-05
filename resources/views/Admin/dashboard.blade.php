@@ -27,6 +27,7 @@
         
 
     <a href="/dishes" class="btn btn-success">Accedi al Menu</a>
+    <a href="/orders" class="btn btn-success">Accedi ai Ordini</a>
     </div>
    
 

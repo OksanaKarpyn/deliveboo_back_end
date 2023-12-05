@@ -11,6 +11,7 @@ class Order extends Model
 
      //many to many */*
      public function dishes(){
-        return $this->belongsToMany(Dish::class);
+        return $this->belongsToMany(Dish::class,'dish_order', 'order_id', 'dish_id')
+        ->withPivot('quantity');
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Admin\Dish;
 use App\Models\Admin\Order;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+        $dishes = dish::all();
+        // dd($orders);
+        return view('Admin.order.index',compact('orders','dishes'));
     }
 
     /**
