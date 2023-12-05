@@ -31,11 +31,22 @@ class OrderController extends Controller
         // Ottieni i piatti solo per il ristorante loggato
         $dishes = Dish::where('restaurant_id', $restaurantId)->get();
 
+        // Inizializza il totale a zero
+        $total = 0;
+
+        // Itera attraverso gli ordini e calcola il totale
+        foreach ($orders as $order) {
+            foreach ($order->dishes as $dish) {
+                // Calcola il totale per ogni piatto
+                $total += $dish->price * $dish->pivot->quantity;
+            }
+        };
+
         // Ottieni il ristorante loggato
         $restaurant = Restaurant::find($restaurantId);
 
         // Esegui la vista passando i dati necessari
-        return view('Admin.order.index', compact('restaurant', 'orders', 'dishes'));
+        return view('Admin.order.index', compact('restaurant', 'orders', 'dishes', 'total'));
     }
     /**
      * Show the form for creating a new resource.
@@ -55,7 +66,32 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+                // Logica per salvare l'ordine
+
+        // Calcola la somma dei prezzi dei piatti
+        $orderTotalPrice = $this->calculateOrderTotalPrice($request->dishes);
+
+        // Salva l'ordine con il totale calcolato
+        $order = new Order;
+        $order->totalprice = $orderTotalPrice;
+        $order->save();
+
+        // ... Altre operazioni
+
+        return redirect()->route('orders.index')->compact('orderTotalPrice');
+    }
+
+    private function calculateOrderTotalPrice($dishes)
+    {
+        $totalPrice = 0;
+
+        // Logica per calcolare la somma dei prezzi dei piatti
+        foreach ($dishes as $dish) {
+            // Assicurati che $dish sia un modello Dish con una relazione many-to-many
+            $totalPrice += $dish->price * $dish->pivot->quantity;
+        }
+
+        return $totalPrice;
     }
 
     /**

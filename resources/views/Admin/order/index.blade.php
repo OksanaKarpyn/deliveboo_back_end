@@ -27,16 +27,19 @@
                                 </td>
                                 <td>
                                     @foreach ($order->dishes as $dish)
-                                    <li>{{ $dish->name }} - Quantity: {{ $dish->pivot->quantity }}</li>
-                                @endforeach
+                                        <li>{{ $dish->name }} - Quantity: {{ $dish->pivot->quantity }}</li>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <li>Totale: {{ $dish->price * $dish->pivot->quantity }}</li>
                                 </td>
                                 {{-- <td>{{$order->create_at}}</td> --}}
                                 {{-- <td>{{ ($order->visible === 1) ? "Available" : "Not Available" }}</td> --}}
-                                <td>{{ $order->totalprice }} &euro;</td> 
                                 
                             </tr>
-
-                        @endforeach
+                            
+                            @endforeach
+                        <td>{{ $total }} &euro;</td> 
                       </tbody>
                 </table>
             </div>
