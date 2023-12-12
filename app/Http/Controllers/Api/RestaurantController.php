@@ -29,8 +29,12 @@ class RestaurantController extends Controller
 
         return response()->json($response);
     }
+
+    public function  show($id){
+        $restaurant = Restaurant::with(['user', 'typologies', 'dishes'])->find($id);
+        return response()->json([
+                'success' => true,
+                'results' => $restaurant,
+            ]);
+    }
 }
-
-
-
-
