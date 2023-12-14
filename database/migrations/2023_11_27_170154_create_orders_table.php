@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string("lastname");
             $table->string("address");
             $table->string("phone");
-            $table->tinyInteger("status");
+            $table->boolean("status")->default("0");
             $table->decimal("totalprice",10,2);
 
             $table->timestamps();

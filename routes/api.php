@@ -33,3 +33,5 @@ Route::get("/apiRestaurant/{id}", [RestaurantController::class, 'show']);
 Route::get("/apiDish", [DishController::class, "index"]);
 Route::get("/apiOrder", [OrderController::class, "index"]);
 Route::get("/apiTypology", [TypologyController::class, "index"]);
+
+Route::post("/orders", [OrderController::class, "create"]);
