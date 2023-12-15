@@ -15,9 +15,12 @@
                 </div>
                 <div class="card-body">
                     @if(isset($restaurants->name))
-                    <div>{{ $restaurants->name }}</div>    
+                    <div>
+                        <h6>Nome Ristorante:</h6>
+                        {{ $restaurants->name }}</div>    
                     @endif
 
+                    <h6>Lista tipologie selezionate:</h6>
                     @foreach($restaurants->typologies as $item)
                         <div>{{$item->name}}</div>
                     @endforeach
@@ -26,7 +29,7 @@
         </div>
         
 
-    <a href="/dishes" class="btn btn-success">Accedi al Menu</a>
+    <a href="/dishes" class="btn btn-success my-3">Accedi al Menu</a>
     <a href="/orders" class="btn btn-success">Accedi ai Ordini</a>
     </div>
    
